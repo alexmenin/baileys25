@@ -19,4 +19,48 @@ message MessageKey {
     optional bool fromMe = 2;
     optional string id = 3;
     optional string participant = 4;
+    // Suporte LID - campos adicionais para protocolo bidirecional
+    optional uint64 remoteLid = 5;
+    optional uint64 participantLid = 6;
+    optional bool isLidMessage = 7;
+}
+
+// Novo protocolo para mensagens LID bidirecionais
+message LIDMessageKey {
+    optional uint64 remoteLid = 1;
+    optional bool fromMe = 2;
+    optional string id = 3;
+    optional uint64 participantLid = 4;
+    optional string remoteJid = 5; // Fallback para compatibilidade
+    optional string participant = 6; // Fallback para compatibilidade
+}
+
+// Estrutura para conversão bidirecional LID <-> JID
+message MessageIdentifier {
+    oneof identifier {
+        MessageKey jidKey = 1;
+        LIDMessageKey lidKey = 2;
+    }
+    optional bool preferLid = 3;
+    optional uint64 timestamp = 4;
+}
+
+// Metadata para roteamento inteligente
+message MessageRoutingInfo {
+    optional bool recipientSupportsLid = 1;
+    optional bool senderSupportsLid = 2;
+    optional bool groupSupportsLid = 3;
+    optional uint64 migrationTimestamp = 4;
+    repeated uint64 participantLids = 5;
+    repeated string participantJids = 6;
+}
+
+// Envelope para mensagens com suporte bidirecional
+message BidirectionalMessage {
+    optional MessageIdentifier primaryIdentifier = 1;
+    optional MessageIdentifier fallbackIdentifier = 2;
+    optional MessageRoutingInfo routingInfo = 3;
+    optional bytes messageContent = 4;
+    optional uint64 timestamp = 5;
+    optional bool requiresLidSupport = 6;
 }

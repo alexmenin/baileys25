@@ -471,6 +471,30 @@ $root.Protocol = (function() {
          */
         MessageKey.prototype.participant = null;
 
+        /**
+         * MessageKey remoteLid.
+         * @member {number|Long|null|undefined} remoteLid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.remoteLid = null;
+
+        /**
+         * MessageKey participantLid.
+         * @member {number|Long|null|undefined} participantLid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.participantLid = null;
+
+        /**
+         * MessageKey isLidMessage.
+         * @member {boolean|null|undefined} isLidMessage
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        MessageKey.prototype.isLidMessage = null;
+
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
@@ -519,6 +543,39 @@ $root.Protocol = (function() {
         });
 
         /**
+         * MessageKey _remoteLid.
+         * @member {"remoteLid"|undefined} _remoteLid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        Object.defineProperty(MessageKey.prototype, "_remoteLid", {
+            get: $util.oneOfGetter($oneOfFields = ["remoteLid"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * MessageKey _participantLid.
+         * @member {"participantLid"|undefined} _participantLid
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        Object.defineProperty(MessageKey.prototype, "_participantLid", {
+            get: $util.oneOfGetter($oneOfFields = ["participantLid"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * MessageKey _isLidMessage.
+         * @member {"isLidMessage"|undefined} _isLidMessage
+         * @memberof Protocol.MessageKey
+         * @instance
+         */
+        Object.defineProperty(MessageKey.prototype, "_isLidMessage", {
+            get: $util.oneOfGetter($oneOfFields = ["isLidMessage"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
          * Creates a new MessageKey instance using the specified properties.
          * @function create
          * @memberof Protocol.MessageKey
@@ -550,6 +607,12 @@ $root.Protocol = (function() {
                 writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
             if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.participant);
+            if (message.remoteLid != null && Object.hasOwnProperty.call(message, "remoteLid"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.remoteLid);
+            if (message.participantLid != null && Object.hasOwnProperty.call(message, "participantLid"))
+                writer.uint32(/* id 6, wireType 0 =*/48).uint64(message.participantLid);
+            if (message.isLidMessage != null && Object.hasOwnProperty.call(message, "isLidMessage"))
+                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.isLidMessage);
             return writer;
         };
 
@@ -600,6 +663,18 @@ $root.Protocol = (function() {
                     }
                 case 4: {
                         message.participant = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.remoteLid = reader.uint64();
+                        break;
+                    }
+                case 6: {
+                        message.participantLid = reader.uint64();
+                        break;
+                    }
+                case 7: {
+                        message.isLidMessage = reader.bool();
                         break;
                     }
                 default:
@@ -747,6 +822,437 @@ $root.Protocol = (function() {
         };
 
         return MessageKey;
+    })();
+
+    Protocol.LIDMessageKey = (function() {
+
+        /**
+         * Properties of a LIDMessageKey.
+         * @memberof Protocol
+         * @interface ILIDMessageKey
+         * @property {number|Long|null} [remoteLid] LIDMessageKey remoteLid
+         * @property {boolean|null} [fromMe] LIDMessageKey fromMe
+         * @property {string|null} [id] LIDMessageKey id
+         * @property {number|Long|null} [participantLid] LIDMessageKey participantLid
+         * @property {string|null} [remoteJid] LIDMessageKey remoteJid
+         * @property {string|null} [participant] LIDMessageKey participant
+         */
+
+        /**
+         * Constructs a new LIDMessageKey.
+         * @memberof Protocol
+         * @classdesc Represents a LIDMessageKey.
+         * @implements ILIDMessageKey
+         * @constructor
+         * @param {Protocol.ILIDMessageKey=} [properties] Properties to set
+         */
+        function LIDMessageKey(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * LIDMessageKey remoteLid.
+         * @member {number|Long|null|undefined} remoteLid
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        LIDMessageKey.prototype.remoteLid = null;
+
+        /**
+         * LIDMessageKey fromMe.
+         * @member {boolean|null|undefined} fromMe
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        LIDMessageKey.prototype.fromMe = null;
+
+        /**
+         * LIDMessageKey id.
+         * @member {string|null|undefined} id
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        LIDMessageKey.prototype.id = null;
+
+        /**
+         * LIDMessageKey participantLid.
+         * @member {number|Long|null|undefined} participantLid
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        LIDMessageKey.prototype.participantLid = null;
+
+        /**
+         * LIDMessageKey remoteJid.
+         * @member {string|null|undefined} remoteJid
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        LIDMessageKey.prototype.remoteJid = null;
+
+        /**
+         * LIDMessageKey participant.
+         * @member {string|null|undefined} participant
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        LIDMessageKey.prototype.participant = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        /**
+         * LIDMessageKey _remoteLid.
+         * @member {"remoteLid"|undefined} _remoteLid
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        Object.defineProperty(LIDMessageKey.prototype, "_remoteLid", {
+            get: $util.oneOfGetter($oneOfFields = ["remoteLid"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * LIDMessageKey _fromMe.
+         * @member {"fromMe"|undefined} _fromMe
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        Object.defineProperty(LIDMessageKey.prototype, "_fromMe", {
+            get: $util.oneOfGetter($oneOfFields = ["fromMe"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * LIDMessageKey _id.
+         * @member {"id"|undefined} _id
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        Object.defineProperty(LIDMessageKey.prototype, "_id", {
+            get: $util.oneOfGetter($oneOfFields = ["id"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * LIDMessageKey _participantLid.
+         * @member {"participantLid"|undefined} _participantLid
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        Object.defineProperty(LIDMessageKey.prototype, "_participantLid", {
+            get: $util.oneOfGetter($oneOfFields = ["participantLid"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * LIDMessageKey _remoteJid.
+         * @member {"remoteJid"|undefined} _remoteJid
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        Object.defineProperty(LIDMessageKey.prototype, "_remoteJid", {
+            get: $util.oneOfGetter($oneOfFields = ["remoteJid"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * LIDMessageKey _participant.
+         * @member {"participant"|undefined} _participant
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         */
+        Object.defineProperty(LIDMessageKey.prototype, "_participant", {
+            get: $util.oneOfGetter($oneOfFields = ["participant"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new LIDMessageKey instance using the specified properties.
+         * @function create
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {Protocol.ILIDMessageKey=} [properties] Properties to set
+         * @returns {Protocol.LIDMessageKey} LIDMessageKey instance
+         */
+        LIDMessageKey.create = function create(properties) {
+            return new LIDMessageKey(properties);
+        };
+
+        /**
+         * Encodes the specified LIDMessageKey message. Does not implicitly {@link Protocol.LIDMessageKey.verify|verify} messages.
+         * @function encode
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {Protocol.ILIDMessageKey} message LIDMessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LIDMessageKey.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.remoteLid != null && Object.hasOwnProperty.call(message, "remoteLid"))
+                writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.remoteLid);
+            if (message.fromMe != null && Object.hasOwnProperty.call(message, "fromMe"))
+                writer.uint32(/* id 2, wireType 0 =*/16).bool(message.fromMe);
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.id);
+            if (message.participantLid != null && Object.hasOwnProperty.call(message, "participantLid"))
+                writer.uint32(/* id 4, wireType 0 =*/32).uint64(message.participantLid);
+            if (message.remoteJid != null && Object.hasOwnProperty.call(message, "remoteJid"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.remoteJid);
+            if (message.participant != null && Object.hasOwnProperty.call(message, "participant"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.participant);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified LIDMessageKey message, length delimited. Does not implicitly {@link Protocol.LIDMessageKey.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {Protocol.ILIDMessageKey} message LIDMessageKey message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        LIDMessageKey.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a LIDMessageKey message from the specified reader or buffer.
+         * @function decode
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Protocol.LIDMessageKey} LIDMessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LIDMessageKey.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.LIDMessageKey();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.remoteLid = reader.uint64();
+                        break;
+                    }
+                case 2: {
+                        message.fromMe = reader.bool();
+                        break;
+                    }
+                case 3: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.participantLid = reader.uint64();
+                        break;
+                    }
+                case 5: {
+                        message.remoteJid = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.participant = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a LIDMessageKey message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Protocol.LIDMessageKey} LIDMessageKey
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        LIDMessageKey.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a LIDMessageKey message.
+         * @function verify
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        LIDMessageKey.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (message.remoteLid != null && message.hasOwnProperty("remoteLid")) {
+                properties._remoteLid = 1;
+                if (!$util.isInteger(message.remoteLid) && !(message.remoteLid && $util.isInteger(message.remoteLid.low) && $util.isInteger(message.remoteLid.high)))
+                    return "remoteLid: integer|Long expected";
+            }
+            if (message.fromMe != null && message.hasOwnProperty("fromMe")) {
+                properties._fromMe = 1;
+                if (typeof message.fromMe !== "boolean")
+                    return "fromMe: boolean expected";
+            }
+            if (message.id != null && message.hasOwnProperty("id")) {
+                properties._id = 1;
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            }
+            if (message.participantLid != null && message.hasOwnProperty("participantLid")) {
+                properties._participantLid = 1;
+                if (!$util.isInteger(message.participantLid) && !(message.participantLid && $util.isInteger(message.participantLid.low) && $util.isInteger(message.participantLid.high)))
+                    return "participantLid: integer|Long expected";
+            }
+            if (message.remoteJid != null && message.hasOwnProperty("remoteJid")) {
+                properties._remoteJid = 1;
+                if (!$util.isString(message.remoteJid))
+                    return "remoteJid: string expected";
+            }
+            if (message.participant != null && message.hasOwnProperty("participant")) {
+                properties._participant = 1;
+                if (!$util.isString(message.participant))
+                    return "participant: string expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a LIDMessageKey message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Protocol.LIDMessageKey} LIDMessageKey
+         */
+        LIDMessageKey.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.LIDMessageKey)
+                return object;
+            var message = new $root.Protocol.LIDMessageKey();
+            if (object.remoteLid != null)
+                if ($util.Long)
+                    (message.remoteLid = $util.Long.fromValue(object.remoteLid)).unsigned = true;
+                else if (typeof object.remoteLid === "string")
+                    message.remoteLid = parseInt(object.remoteLid, 10);
+                else if (typeof object.remoteLid === "number")
+                    message.remoteLid = object.remoteLid;
+                else if (typeof object.remoteLid === "object")
+                    message.remoteLid = new $util.LongBits(object.remoteLid.low >>> 0, object.remoteLid.high >>> 0).toNumber(true);
+            if (object.fromMe != null)
+                message.fromMe = Boolean(object.fromMe);
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.participantLid != null)
+                if ($util.Long)
+                    (message.participantLid = $util.Long.fromValue(object.participantLid)).unsigned = true;
+                else if (typeof object.participantLid === "string")
+                    message.participantLid = parseInt(object.participantLid, 10);
+                else if (typeof object.participantLid === "number")
+                    message.participantLid = object.participantLid;
+                else if (typeof object.participantLid === "object")
+                    message.participantLid = new $util.LongBits(object.participantLid.low >>> 0, object.participantLid.high >>> 0).toNumber(true);
+            if (object.remoteJid != null)
+                message.remoteJid = String(object.remoteJid);
+            if (object.participant != null)
+                message.participant = String(object.participant);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a LIDMessageKey message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {Protocol.LIDMessageKey} message LIDMessageKey
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        LIDMessageKey.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (message.remoteLid != null && message.hasOwnProperty("remoteLid")) {
+                if (typeof message.remoteLid === "number")
+                    object.remoteLid = options.longs === String ? String(message.remoteLid) : message.remoteLid;
+                else
+                    object.remoteLid = options.longs === String ? $util.Long.prototype.toString.call(message.remoteLid) : options.longs === Number ? new $util.LongBits(message.remoteLid.low >>> 0, message.remoteLid.high >>> 0).toNumber(true) : message.remoteLid;
+                if (options.oneofs)
+                    object._remoteLid = "remoteLid";
+            }
+            if (message.fromMe != null && message.hasOwnProperty("fromMe")) {
+                object.fromMe = message.fromMe;
+                if (options.oneofs)
+                    object._fromMe = "fromMe";
+            }
+            if (message.id != null && message.hasOwnProperty("id")) {
+                object.id = message.id;
+                if (options.oneofs)
+                    object._id = "id";
+            }
+            if (message.participantLid != null && message.hasOwnProperty("participantLid")) {
+                if (typeof message.participantLid === "number")
+                    object.participantLid = options.longs === String ? String(message.participantLid) : message.participantLid;
+                else
+                    object.participantLid = options.longs === String ? $util.Long.prototype.toString.call(message.participantLid) : options.longs === Number ? new $util.LongBits(message.participantLid.low >>> 0, message.participantLid.high >>> 0).toNumber(true) : message.participantLid;
+                if (options.oneofs)
+                    object._participantLid = "participantLid";
+            }
+            if (message.remoteJid != null && message.hasOwnProperty("remoteJid")) {
+                object.remoteJid = message.remoteJid;
+                if (options.oneofs)
+                    object._remoteJid = "remoteJid";
+            }
+            if (message.participant != null && message.hasOwnProperty("participant")) {
+                object.participant = message.participant;
+                if (options.oneofs)
+                    object._participant = "participant";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this LIDMessageKey to JSON.
+         * @function toJSON
+         * @memberof Protocol.LIDMessageKey
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        LIDMessageKey.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for LIDMessageKey
+         * @function getTypeUrl
+         * @memberof Protocol.LIDMessageKey
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        LIDMessageKey.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/Protocol.LIDMessageKey";
+        };
+
+        return LIDMessageKey;
     })();
 
     return Protocol;
